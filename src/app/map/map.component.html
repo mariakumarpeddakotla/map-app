@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="edit-landmark-container">
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+    <div class="edit-form-container">
+      <form>
+        <div class="form-group">
+          <label for="landmarkName">Land mark Name</label>
+          <input type="text" id="landmarkName" [(ngModel)]="landmarkName" name="name" required value="{{ landmarkName }}">
+        </div>
+        <div class="form-group">
+          <label for="latitude">Latitude</label>
+          <input type="text" id="latitude" [(ngModel)]="latitude" name="latitude" required>
+        </div>
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
+          <input type="text" id="longitude" [(ngModel)]="longitude" name="longitude" required>
+        </div>
+        <div class="button-group">
+          <button type="button">Cancel</button>
+          <button type="submit" (click)="saveLocation()">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
