@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as L from 'leaflet';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, CommonModule],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
 })
@@ -16,6 +17,9 @@ export class MapComponent implements OnInit {
   latitude: number = 16.291245098208776;
   longitude: number = 80.45379003722765;
   landmarkName: string = 'Default Landmark';
+  isVisible: boolean = false;
+  popupTitle: string = '';
+  popupMessage: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -64,11 +68,29 @@ export class MapComponent implements OnInit {
   }
 
   /**
-   * Logs the location name, latitude, and longitude to the console.
+   * Logs the location name, latitude, and longitude to the console and sets the isVisible to display popup on save button clicked.
    */
   saveLocation(): void {
+    this.popupTitle = 'Location Saved';
+    this.popupMessage = 'Your location has been successfully saved.';
+    this.isVisible = true;
     console.log('Location Name:', this.landmarkName);
     console.log('Latitude:', this.latitude);
     console.log('Longitude:', this.longitude);
+  }
+/**
+ * When cancel button is clicked the popup is displayed by setting isVisible to true. 
+ */
+  cancel(): void {
+    this.popupTitle = 'Action Cancelled';
+    this.popupMessage = 'The action has been cancelled.';
+    this.isVisible = true;
+  }
+
+/**
+ * To close the popup
+ */
+  close() {
+    this.isVisible = !this.isVisible;
   }
 }

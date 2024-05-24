@@ -18,10 +18,20 @@
           <input type="text" id="longitude" [(ngModel)]="longitude" name="longitude" required>
         </div>
         <div class="button-group">
-          <button type="button">Cancel</button>
+          <button type="button" (click)="cancel()">Cancel</button>
           <button type="submit" (click)="saveLocation()">Save</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<!-- popup -->
+<div class="popup-container" *ngIf="isVisible">
+  <div class="popup-content">
+    <h2>{{ popupTitle }}</h2>
+    <p>{{ popupMessage }}</p>
+    <button (click)="close()">Close</button>
+  </div>
+</div>
+
